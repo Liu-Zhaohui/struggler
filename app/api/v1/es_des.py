@@ -49,6 +49,7 @@ def deslist():
         result['title'] = i['title']
         result['type'] = i['category']
         result['id'] = i['id']
+        result['timestamp'] = i['update_time']
         jsondata.append(result)
         jsondar = json.dumps(jsondata, ensure_ascii=False)
     return jsondar
