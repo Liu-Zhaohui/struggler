@@ -18,6 +18,7 @@ api = Redprint('es_des')
 #     "category": "run_time啊",
 #     "content": "这是内容啊"
 # }
+
 @api.route('/add_desc', methods=['POST'])
 def insert_es_des():
     req = request.json

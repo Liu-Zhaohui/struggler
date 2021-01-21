@@ -13,7 +13,6 @@ class EsDescription(Base):
     category = Column(String(50))
     update_time = Column(Integer)
 
-
     @staticmethod
     def get_des_list():
         deslists = EsDescription.query.all()

@@ -9,8 +9,8 @@ class JSONEncoder(_JSONEncoder):
     # default是被递归调用的，只要是遇到不能被序列化的，就会继续调用
     def default(self, o):
         # 把对象转换为字典，__init__类的变量是不会被存在__dict__,实例变量不会存在于这里面。例如init里面的
-        #一个对象不可以用o['name']的方式访问变量，但是如果给它增加__getitem__方法后就可以，
-        #getattr获取对象下面的对应值，getattr（o，item）
+        # 一个对象不可以用o['name']的方式访问变量，但是如果给它增加__getitem__方法后就可以，
+        # getattr获取对象下面的对应值，getattr（o，item）
         # 当有keys属性，和__getitem__方法时才返回
         if hasattr(o, 'keys') and hasattr(o, '__getitem__'):
             return dict(o)
@@ -46,7 +46,7 @@ def create_app():
     app.config.from_object('app.config.setting')
     app.config.from_object('app.config.secure')
 
-    #第三方插件注册到flask核心对象上
+    # 第三方插件注册到flask核心对象上
     register_blueprints(app)
     register_plugin(app)
 

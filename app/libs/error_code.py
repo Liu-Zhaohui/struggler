@@ -17,10 +17,12 @@ from .errors import APIException
 #         'invalid parameter type'
 #     }
 
+
 class Success(APIException):
     code = 201
     msg = 'SUCCESS'
     error_code = 0
+
 
 class ServerError(APIException):
     code = 500
@@ -34,16 +36,19 @@ class ClientTypeError(APIException):
     msg = 'client is valid'
     error_code = 1006
 
+
 class ParameterException(APIException):
     # 为了解决返回为html的问题，因此自己实现APIException，  code是status， error_code是业务信息错误码
     code = 400
     msg = 'invalid parameter'
     error_code = 1000
 
+
 class NotFound(APIException):
     code = 404
     msg = 'the resource are not found 0-0...'
     error_code = 1001
+
 
 class AuthFaild(APIException):
     code = 401
