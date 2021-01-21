@@ -31,7 +31,7 @@ def insert_es_des():
 
             message = Message()
             message.mid = es_des.id
-            message.message = req['content']
+            message.message = json.dumps(req['content'])
             db.session.add(message)
 
             return 'success'
@@ -50,3 +50,16 @@ def deslist():
         jsondata.append(result)
         jsondar = json.dumps(jsondata, ensure_ascii=False)
     return jsondar
+
+# http://127.0.0.1:5000/v1/es_des/id
+# {
+#     "id": 3
+# }
+# 响应：{"shipperId": 1, "route": {"startId": "110100", "endId": "110100"}}
+@api.route('/id', methods=['POST'])
+def per_es():
+    req = request.json
+    if request.method == 'POST':
+        id = req['id']
+        message = Message.query.filter_by(mid=id).first()
+        return message.message

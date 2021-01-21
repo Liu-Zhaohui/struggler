@@ -11,3 +11,12 @@ msg='token is expired',error_code='1003'
 使用说明：
 ginger.py入口文件
 接口文件定义在app-api-v1-es_des
+
+
+数据库有变更，执行manage.py文件
+
+python manage.py db init
+
+python manage.py db migrate
+
+python manage.py db upgrade

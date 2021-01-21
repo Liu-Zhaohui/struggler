@@ -4,7 +4,7 @@
 
 
 from app.models.base import Base
-from sqlalchemy import Integer, Column, String, ForeignKey
+from sqlalchemy import Integer, Column, String, ForeignKey, Text
 from sqlalchemy.orm import relationship
 
 
@@ -12,4 +12,4 @@ class Message(Base):
     id = Column(Integer, primary_key=True)
     es_description = relationship('EsDescription')
     mid = Column(Integer, ForeignKey('es_description.id'))
-    message = Column(String(500))
+    message = Column(Text)
