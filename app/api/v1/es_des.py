@@ -8,6 +8,7 @@ from app.models.base import db
 from app.models.es_description import EsDescription
 from app.models.es_message import Message
 import json
+from datetime import datetime
 
 api = Redprint('es_des')
 
@@ -25,6 +26,7 @@ def insert_es_des():
             es_des = EsDescription()
             es_des.title = req['title']
             es_des.category = req['category']
+            es_des.update_time = int(datetime.now().timestamp())
             db.session.add(es_des)
             # 取des表里面的id
             db.session.flush()
@@ -45,7 +47,7 @@ def deslist():
     for i in dst:
         result = {}
         result['title'] = i['title']
-        result['category'] = i['category']
+        result['type'] = i['category']
         result['id'] = i['id']
         jsondata.append(result)
         jsondar = json.dumps(jsondata, ensure_ascii=False)
@@ -63,3 +65,21 @@ def per_es():
         id = req['id']
         message = Message.query.filter_by(mid=id).first()
         return message.message
+
+
+# http://127.0.0.1:5000/v1/es_des/edit
+# {
+#     "id": 5,
+#     "content": "更新内容"
+# }
+#
+@api.route('/edit', methods=['POST'])
+def per_edit():
+    req = request.json
+    if request.method == 'POST':
+        with db.auto_commit():
+            id = req['id']
+            message = Message.query.filter_by(mid=id).first()
+            message.message = req['content']
+            db.session.add(message)
+            return '更新成功'

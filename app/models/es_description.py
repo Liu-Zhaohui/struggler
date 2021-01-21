@@ -18,3 +18,4 @@ class EsDescription(Base):
     def get_des_list():
         deslists = EsDescription.query.all()
         return deslists
+

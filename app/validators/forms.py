@@ -39,8 +39,3 @@ class UserEmailForm(ClientForm):
         if User.query.filter_by(nickname=value.data).first():
             raise ValidationError
 
-
-class EsDescriptionForm(JsonFom):
-
-    title = StringField(validators=[DataRequired(message='title不可用空')])
-    category = StringField(validators=[DataRequired(message='分类不可用空')])
