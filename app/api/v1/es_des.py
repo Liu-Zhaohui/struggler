@@ -9,6 +9,7 @@ from app.models.es_description import EsDescription
 from app.models.es_message import Message
 import json
 from datetime import datetime
+from flask_cors import cross_origin
 
 api = Redprint('es_des')
 
@@ -18,6 +19,7 @@ api = Redprint('es_des')
 #     "category": "run_time啊",
 #     "content": "这是内容啊"
 # }
+
 @api.route('/add_desc', methods=['POST'])
 def insert_es_des():
     req = request.json
@@ -41,7 +43,9 @@ def insert_es_des():
 
 # 列表接口查询http://127.0.0.1:5000/v1/es_des/deslist
 @api.route('/deslist', methods=['GET'])
+@cross_origin()
 def deslist():
+
     dst = EsDescription.get_des_list()
     jsondata = []
     for i in dst:

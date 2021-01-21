@@ -1,6 +1,7 @@
 from werkzeug.exceptions import HTTPException
 from flask import request, json
 
+
 class APIException(HTTPException):
     code = 500
     msg = 'we make a mistake(*~~~*)'
@@ -25,6 +26,7 @@ class APIException(HTTPException):
         text = json.dumps(body)
         return text
 
+    @staticmethod
     def get_headers(self, environ=None):
         """Get a list of headers."""
         return [("Content-Type", "application/json; charset=utf-8")]

@@ -23,7 +23,7 @@ def verify_password(token, password):
 def verify_auth_token(token):
     s = Serializer(current_app.config['SECRET_KEY'])
     try:
-        #用来解密token，字符串转化为字典
+        # 用来解密token，字符串转化为字典
         data = s.loads(token)
     except BadSignature:
         raise AuthFaild(msg='token is invalid',

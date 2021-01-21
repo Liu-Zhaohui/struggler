@@ -2,6 +2,7 @@ from wtforms import Form
 from app.libs.error_code import ParameterException
 from flask import request
 
+
 class BaseForm(Form):
 
     def __init__(self):

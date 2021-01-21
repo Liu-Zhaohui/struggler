@@ -2,7 +2,7 @@ from flask import Blueprint
 from app.api.v1 import user, book, client, token, es_des
 
 def create_blueprint_v1():
-    bp_v1 = Blueprint('v1', __name__)
+    bp_v1 = Blueprint('/v1', __name__)
     #红图里面优化掉
     # user.api.register(bp_v1, url_prefix='/user')
     # book.api.register(bp_v1, url_prefix='/book')
